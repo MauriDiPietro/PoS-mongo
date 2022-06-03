@@ -2,22 +2,24 @@ import React, {useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
 import axios from 'axios'
 
-
 export const ShowSales = ({date}) => {
 
 const [salesList, setSalesList] = useState('')
 
-console.log('salesList', salesList)
+const URI = `http://localhost:8080/sales/date/${date}`
+
+const getSales = async () =>{
+    const res = await axios.get(URI)
+    setSalesList(res.data)
+    console.log(res.data)
+}
+
+
 
 useEffect(() => {
     getSales()
 }, [])
 
-const getSales = async () =>{
-    const res = await axios.get('http://localhost:8080/sales')
-    setSalesList(res.data)
-    console.log(res.data)
-}
 
   return (
       
