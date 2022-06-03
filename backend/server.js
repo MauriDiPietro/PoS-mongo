@@ -4,6 +4,7 @@ import { Server as Socket } from 'socket.io'
 import cors from 'cors';
 import morgan from 'morgan';
 import routesSales from './routes/sale.routes.js';
+import routesProducts from './routes/listOfPrice.routes.js';
 import './db/db.js'
 import {getSalesByDate, saveSale} from './controllers/sale.controllers.js'
 
@@ -34,6 +35,7 @@ app.use(cors({origin: whiteList}));
 
 
 app.use('/sales', routesSales)
+app.use('/products', routesProducts)
 
 io.on('connection', async (socket) => {
     socket.on('conectado', ()=>{

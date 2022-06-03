@@ -34,8 +34,10 @@ export const updateProduct = async(req, res) => {
         const product = await ProductModel.updateOne({_id: id},
                     { 
            $set: {
-                    product: req.body.product,
-                   
+                    name: req.body.name,
+                    priceOfBuy: req.body.priceOfBuy,
+                    priceOfSale: req.body.priceOfSale,
+                    increment: req.body.increment
                 }
         }
         )
@@ -46,53 +48,11 @@ export const updateProduct = async(req, res) => {
 }
 
 
-export const getProductByDate = async(req, res) => {
-    const {date} = req.params 
-    try {
-        const product = await ProductModel.find({
-            date: {
-                $eq: `${date}`
-            }
-        })
-        res.json(product)
-    } catch (error) {
-        res.send({message: error.message});
-    }
-}
-
-export const getProductsByMonth = async(req, res) => {
-    const {month} = req.params 
-    try {
-        const product = await ProductModel.find({
-            month: {
-                $eq: `${month}`
-            }
-        })
-        res.json(product)
-    } catch (error) {
-        res.send({message: error.message});
-    }
-}
-
-export const getProductByYear = async(req, res) => {
-    const {year} = req.params 
-    try {
-        const product = await ProductModel.find({
-            year: {
-                $eq: `${year}`
-            }
-        })
-        res.json(product)
-    } catch (error) {
-        res.send({message: error.message});
-    }
-}
-
 export const deleteProduct = async(req, res) => {
     const {id} = req.params
     try {
         const product = await ProductModel.findByIdAndDelete(`${id}`)
-        res.json(product)
+        res.send('product deleted')
     } catch (error) {
         res.send({message: error.message});
     }
