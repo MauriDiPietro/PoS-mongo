@@ -14,9 +14,16 @@ const Schema = new mongoose.Schema({
         type: Number,
         trim: true
     },
+    gain: {
+        type: Number,
+        trim: true
+    },
     increment: {
         type: Number,
         trim: true
+    },
+    dateIncr:{
+        type: String
     }
 },
 {

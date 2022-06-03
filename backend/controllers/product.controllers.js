@@ -37,7 +37,9 @@ export const updateProduct = async(req, res) => {
                     name: req.body.name,
                     priceOfBuy: req.body.priceOfBuy,
                     priceOfSale: req.body.priceOfSale,
-                    increment: req.body.increment
+                    increment: req.body.increment,
+                    gain: req.body.gain,
+                    dateIncr: req.body.dateIncr
                 }
         }
         )

@@ -94,7 +94,7 @@ const Home = () => {
                       <th>Condición</th>
                   </tr>
               </thead>
-              <tbody>
+              			<tbody>
                            {
                             salesList ? salesList.map((i)=>(
                                    <tr key={i.id}>
