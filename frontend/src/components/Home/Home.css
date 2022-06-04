@@ -1,0 +1,47 @@
+.body{
+    background-color: rgba(250, 227, 246, 0.473);
+}
+
+.date{
+    position: absolute;
+    margin-left: 50px;
+    /* margin-top: 0px; */
+    margin-bottom: 50px;
+    /* background-color: blue; */
+}
+
+.form1{
+    position: relative;
+    margin-left: 50px;
+    margin-top: 40px;
+    width: 30%;
+    height: 40%;
+    top: 55px;
+   
+}
+
+.btn{
+    margin-left: 300px;
+    margin-top: 10px
+}
+
+.table{
+    /* margin-right: 10px; */
+     /* width: 10%; */
+    /* height: 100%; */
+    position: absolute;
+    left: 100px;
+    /* top: 50px */
+    
+}
+.table-{
+    /* margin-right: 10px; */
+    margin-top: 60px;
+     width: 58%;
+    /* height: 100%; */
+    position: absolute;
+    margin-right: 50px;
+    right: 110px;
+    top: 55px
+    
+}

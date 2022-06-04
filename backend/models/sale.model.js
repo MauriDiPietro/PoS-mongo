@@ -6,9 +6,12 @@ const Schema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    price: {
+    ing: {
         type: Number,
-        required: true,
+        trim: true
+    },
+    egr: {
+        type: Number,
         trim: true
     },
     condition: {

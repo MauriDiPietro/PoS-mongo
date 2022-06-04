@@ -35,7 +35,8 @@ export const updateSale = async(req, res) => {
                     { 
            $set: {
                     sale: req.body.sale,
-                    import: req.body.import,
+                    ing: req.body.ing,
+                    egr: req.body.egr,
                     condition: req.body.condition,
                     date: req.body.date,
                     month: req.body.month,

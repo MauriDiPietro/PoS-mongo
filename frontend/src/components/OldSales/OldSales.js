@@ -73,7 +73,8 @@ useEffect(() => {
                 <tr>
                     <th>Fecha</th>
                     <th>Detalle</th>
-                    <th>Importe</th>
+                    <th>Ingreso</th>
+                    <th>Egreso</th>
                     <th>Condición</th>
                     <th>Editar/Eliminar</th>
                 </tr>
@@ -84,7 +85,8 @@ useEffect(() => {
                                  <tr key={i._id}>
                                 <td>{i.date}</td>
                                  <td>{i.sale}</td>
-                                 <td>{i.price}</td>
+                                 <td>{i.ing}</td>
+                                 <td>{i.egr}</td>
                                  <td>{i.condition}</td>
                                  <td>
                                      <Link to={`/edit/${i._id}`} className='btn btn-info'><AiFillEdit /></Link>
