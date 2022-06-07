@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import './SaveProduct.css'
 
 export const SaveProduct = () => {
 
@@ -29,7 +30,7 @@ const URI= 'http://localhost:8080/products'
         await axios.post(URI, {name, priceOfBuy, priceOfSale, increment, gain});
         console.log(name, priceOfBuy, priceOfSale, increment, gain)
         alert('producto guardado!')
-        // navigate('/list');
+        navigate('/list');
     }
 
     const aplicarGanancia = ()=>{
@@ -37,6 +38,7 @@ const URI= 'http://localhost:8080/products'
         let b = a/100
         setPriceOfSale(b + Number(`${priceOfBuy}`))
         console.log('precio + ganancia', priceOfSale)
+        alert(`Ganancia aplicada: ${gain}%`)
     }
 
   return (
@@ -44,7 +46,7 @@ const URI= 'http://localhost:8080/products'
     <div>
     {/* <Navbar1 /> */}
         <h3>Guardar producto en lista de precios</h3>
-        <form onSubmit={save}>
+        <form onSubmit={save} className='form-save'>
             <div className='mb-3'>
                 <label className='form-label'>Producto</label>
                 <input 
@@ -81,9 +83,9 @@ const URI= 'http://localhost:8080/products'
               
                
             </div>
-            <button type='submit' className='btn btn-primary'>Guardar</button>
+                <button className='btn btn-warning btn-warning' onClick={aplicarGanancia}>Aplicar Ganancia</button>
+                <button type='submit' className='btn btn-primary'>Guardar</button>
         </form>
-                <button onClick={aplicarGanancia}>Aplicar Ganancia</button>
 </div>
   )
 }

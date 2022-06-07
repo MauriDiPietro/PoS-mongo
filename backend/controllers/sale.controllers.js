@@ -102,3 +102,71 @@ export const deleteSale = async(req, res) => {
         res.send({message: error.message});
     }
 }
+
+export const getTotalIng = async(req, res)=>{
+    const {date} = req.params 
+    try {
+        const sales = await SaleModel.aggregate([
+            {
+            $match: {
+                date: `${date}`         //matchea con fecha pasada por params
+            }
+        },
+        {
+            $group: {
+                    _id: '$date', totaling: {$sum: '$ing'}  //suma los campos ing
+                }
+            }
+        ])        
+        res.json(sales)
+    } catch (error) {
+        res.send({message: error.message});
+    }
+}
+
+export const getTotalEgr = async(req, res)=>{
+    const {date} = req.params 
+    try {
+        const sales = await SaleModel.aggregate([
+            {
+            $match: {
+                date: `${date}`         //matchea con fecha pasada por params
+            }
+        },
+        {
+            $group: {
+                    _id: '$date', totalegr: {$sum: '$egr'}  //suma los campos ing
+                }
+            }
+        ])        
+        res.json(sales)
+    } catch (error) {
+        res.send({message: error.message});
+    }
+}
+
+export const getTotal = async(req, res)=>{
+    const {date} = req.params 
+    try {
+       const total = await SaleModel.aggregate([
+        {
+        $match: {
+            date: `${date}`         //matchea con fecha pasada por params
+        }
+    },
+    {
+        $group: {
+                _id: '$date', 
+                totaling: {$sum: '$ing'},
+                totalegr: {$sum: '$egr'}, 
+            }
+            
+        }
+    ])        
+    const ing = total.map(x => x.totaling)
+    const egr = total.map(x => x.totalegr)
+    res.json(ing - egr)
+    } catch (error) {
+        res.send({message: error.message});
+    }
+}

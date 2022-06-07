@@ -1,28 +1,32 @@
 .body{
-    background-color: rgba(250, 227, 246, 0.473);
+    background-color: #fcecf998;
+    
 }
 
 .date{
     position: absolute;
     margin-left: 50px;
-    /* margin-top: 0px; */
+    top: 80px;
     margin-bottom: 50px;
     /* background-color: blue; */
+    /* background-color: #fcecf9 */
 }
 
 .form1{
     position: relative;
     margin-left: 50px;
-    margin-top: 40px;
+    margin-top: 5px;
     width: 30%;
     height: 40%;
     top: 55px;
+    /* background-color: #fcecf9 */
    
 }
 
-.btn{
-    margin-left: 300px;
-    margin-top: 10px
+.btn-finalizar{
+    margin-left: 335px;
+    margin-top: 10px;
+   
 }
 
 .table{
@@ -33,6 +37,7 @@
     left: 100px;
     /* top: 50px */
     
+    
 }
 .table-{
     /* margin-right: 10px; */
@@ -42,6 +47,7 @@
     position: absolute;
     margin-right: 50px;
     right: 110px;
-    top: 55px
+    top: 55px;
+    
     
 }

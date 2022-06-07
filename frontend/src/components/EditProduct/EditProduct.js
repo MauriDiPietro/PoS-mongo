@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'
+import './EditProduct.css'
 
 export const EditProduct = () => {
 
@@ -8,7 +9,7 @@ export const EditProduct = () => {
     const [priceOfBuy, setPriceOfBuy] = useState('')
     const [priceOfSale, setPriceOfSale] = useState('')
     const [increment, setIncrement] = useState('')
-    const [gain, setGain] = useState('')
+    // const [gain, setGain] = useState('')
     const [dateIncr, setDateIncr] = useState('')
 
     const fechaCompleta = new Date()
@@ -34,7 +35,7 @@ const URI= 'http://localhost:8080/products/'
         // let d = c/100
         // setPriceOfSale(d + Number(`${priceOfSale}`))
         
-        await axios.put(URI+id, {name, priceOfBuy, priceOfSale, increment, gain, dateIncr});
+        await axios.put(URI+id, {name, priceOfBuy, priceOfSale, increment, dateIncr});
         // console.log(name, priceOfBuy, priceOfSale, increment, gain)
         alert('producto guardado!')
         navigate('/list');
@@ -47,7 +48,7 @@ const URI= 'http://localhost:8080/products/'
         setPriceOfBuy(res.data.priceOfBuy)
         setPriceOfSale(res.data.priceOfSale)
         setIncrement(res.data.increment)
-        setGain(res.data.gain)
+        // setGain(res.data.gain)
         setDateIncr(res.data.dateIncr)
     }
 
@@ -68,7 +69,7 @@ const URI= 'http://localhost:8080/products/'
     <div>
     {/* <Navbar1 /> */}
         <h3>Editar producto en lista de precios</h3>
-        <form onSubmit={update}>
+        <form onSubmit={update} className='form-save' >
             <div className='mb-3'>
                 <label className='form-label'>Producto</label>
                 <input 
@@ -86,14 +87,14 @@ const URI= 'http://localhost:8080/products/'
                     className='form-control'
                     placeholder='Precio de compra sin $'
                 />
-                 <label className='form-label'>Ganancia %</label>
-                <input 
+                 {/* <label className='form-label'>Ganancia %</label> */}
+                {/* <input 
                     value={gain}
                     onChange={(e)=>setGain(e.target.value)}
                     type= 'number'
                     className='form-control'
                     placeholder='Ganancia sin %'
-                />
+                /> */}
                 <br></br>
                 <label className='form-label'>Aumento %</label>
                 <input 
@@ -102,9 +103,12 @@ const URI= 'http://localhost:8080/products/'
                     placeholder='Aumento sin %'
                     onChange={e=>setIncrement(e.target.value)}
                 />
-                <button onClick={aplicarAumento}>Aplicar</button>
+                <br></br>
+               Precio de venta actual: <h2> ${priceOfSale}</h2> 
+               <br></br>
+             
+                <button className='btn btn-warning ' onClick={aplicarAumento}>Aplicar aumento</button>
               
-               <input placeholder={priceOfSale} />
             </div>
             <button type='submit' className='btn btn-primary'>Guardar</button>
         </form>

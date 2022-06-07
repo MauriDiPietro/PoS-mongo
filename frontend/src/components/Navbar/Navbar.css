@@ -1,3 +1,30 @@
 .navbar{
     text-decoration: none;
+    top: 2px;
+    
+}
+
+.navbar:hover{
+    background-color: rgba(221, 178, 231, 0.062);
+    
+}
+
+.logo{
+    width: 80px;
+    height: 80px;
+    position: relative;
+    top: -5px;
+    padding: 2px
+}
+
+.list{
+    /* padding: 10px; */
+    /* margin-left: 200px;*/
+    position: relative;
+    top: -5px;
+}
+
+.nav{
+    height: 10vh;
+    /* bottom: 10px */
 }
