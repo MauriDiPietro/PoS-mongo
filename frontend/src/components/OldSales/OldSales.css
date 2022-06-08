@@ -26,3 +26,14 @@
 .select-condition{
     padding: 10px
 }
+
+.table-list{
+    position: relative;
+    width: 80%;
+    margin-top: 30px;
+    /* margin-left: 2px;
+    margin-right: 2px */
+}
+
+
+

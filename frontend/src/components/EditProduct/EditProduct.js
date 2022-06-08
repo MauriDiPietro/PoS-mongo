@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'
 import './EditProduct.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const EditProduct = () => {
 
@@ -24,21 +26,18 @@ const navigate = useNavigate();
 
 const URI= 'http://localhost:8080/products/'
 
+const notify = () => toast("Se aplicó el aumento!");
+
     const update = async (e) => {
         e.preventDefault();
-
-        // let a = `${priceOfBuy}` * `${gain}`
-        // let b = a/100
-        // setPriceOfSale(b + Number(`${priceOfBuy}`))
-
-        // let c = `${priceOfSale}` * `${increment}`
-        // let d = c/100
-        // setPriceOfSale(d + Number(`${priceOfSale}`))
         
         await axios.put(URI+id, {name, priceOfBuy, priceOfSale, increment, dateIncr});
+        notify()
         // console.log(name, priceOfBuy, priceOfSale, increment, gain)
-        alert('producto guardado!')
-        navigate('/list');
+        
+        setTimeout(() => {
+            navigate('/list');
+        }, 3000);
     }
 
     const getProductById = async () => {
@@ -107,7 +106,18 @@ const URI= 'http://localhost:8080/products/'
                Precio de venta actual: <h2> ${priceOfSale}</h2> 
                <br></br>
              
-                <button className='btn btn-warning ' onClick={aplicarAumento}>Aplicar aumento</button>
+                <button className='btn btn-warning ' onClick={aplicarAumento}> Aplicar aumento</button>
+                                <ToastContainer
+								position="top-center"
+								autoClose={2000}
+								hideProgressBar={false}
+								newestOnTop={false}
+								closeOnClick
+								rtl={false}
+								pauseOnFocusLoss
+								draggable
+								pauseOnHover
+								/>
               
             </div>
             <button type='submit' className='btn btn-primary'>Guardar</button>

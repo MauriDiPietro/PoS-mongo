@@ -4,6 +4,13 @@
 }
 
 .btn-warning{
+    position:relative;
+    top: -70px;
     padding: 2px;
     margin-right: 5px;
+}
+
+.btn-saveprod{
+    position:relative;
+    top: 10px
 }

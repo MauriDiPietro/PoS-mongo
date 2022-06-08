@@ -8,6 +8,7 @@
     margin-left: 50px;
     top: 80px;
     margin-bottom: 50px;
+    font-family: 'Indie Flower'
     /* background-color: blue; */
     /* background-color: #fcecf9 */
 }
@@ -15,7 +16,7 @@
 .form1{
     position: relative;
     margin-left: 50px;
-    margin-top: 5px;
+    margin-top: 20px;
     width: 30%;
     height: 40%;
     top: 55px;
@@ -51,3 +52,9 @@
     
     
 }
+
+@font-face {
+    font-family: 'Indie Flower';
+    src: url('./font/IndieFlower-Regular.ttf');
+}
+

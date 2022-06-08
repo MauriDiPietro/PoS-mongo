@@ -145,6 +145,7 @@ useEffect(() => {
         
     </div><>
     <button onClick={getSales} className='btn btn-info btn-refresh' >Refresh</button>
+    <div className='table-list'>
         <Table striped bordered hover size="sm">
             <thead>
                 <tr>
@@ -174,6 +175,7 @@ useEffect(() => {
                          } 
             </tbody>
         </Table>
+        </div>
     </></>
 
   )

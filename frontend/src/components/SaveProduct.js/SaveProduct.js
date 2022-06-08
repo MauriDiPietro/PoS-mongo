@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import './SaveProduct.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const SaveProduct = () => {
 
@@ -14,6 +16,8 @@ export const SaveProduct = () => {
 const navigate = useNavigate();
 
 const URI= 'http://localhost:8080/products'
+
+const notify = () => toast("Se guardó el producto!");
 
     const save = async (e) => {
         e.preventDefault();
@@ -29,8 +33,10 @@ const URI= 'http://localhost:8080/products'
         
         await axios.post(URI, {name, priceOfBuy, priceOfSale, increment, gain});
         console.log(name, priceOfBuy, priceOfSale, increment, gain)
-        alert('producto guardado!')
-        navigate('/list');
+        notify()
+        setTimeout(() => {
+            navigate('/list');
+        }, 3000);
     }
 
     const aplicarGanancia = ()=>{
@@ -83,9 +89,20 @@ const URI= 'http://localhost:8080/products'
               
                
             </div>
-                <button className='btn btn-warning btn-warning' onClick={aplicarGanancia}>Aplicar Ganancia</button>
-                <button type='submit' className='btn btn-primary'>Guardar</button>
+                <button type='submit' className='btn btn-primary btn-saveprod'>Guardar</button>
+                                <ToastContainer
+								position="top-center"
+								autoClose={2000}
+								hideProgressBar={false}
+								newestOnTop={false}
+								closeOnClick
+								rtl={false}
+								pauseOnFocusLoss
+								draggable
+								pauseOnHover
+								/>
         </form>
+                <button className='btn btn-warning btn-warning' onClick={aplicarGanancia}>Aplicar Ganancia</button>
 </div>
   )
 }
