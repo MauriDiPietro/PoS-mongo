@@ -93,6 +93,34 @@ export const getSalesByYear = async(req, res) => {
     }
 }
 
+export const getSalesByProduct = async(req, res) => {
+    const {product} = req.params 
+    try {
+        const sales = await SaleModel.find({
+            sale: {
+                $eq: `${product}`
+            }
+        })
+        res.json(sales)
+    } catch (error) {
+        res.send({message: error.message});
+    }
+}
+
+export const getSalesByCondition = async(req, res) => {
+    const {condition} = req.params 
+    try {
+        const sales = await SaleModel.find({
+            condition: {
+                $eq: `${condition}`
+            }
+        })
+        res.json(sales)
+    } catch (error) {
+        res.send({message: error.message});
+    }
+}
+
 export const deleteSale = async(req, res) => {
     const {id} = req.params
     try {

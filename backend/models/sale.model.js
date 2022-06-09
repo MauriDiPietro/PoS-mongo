@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const Schema = new mongoose.Schema({
     sale:{
         type: String,
-        required: true,
+        
         trim: true
     },
     ing: {
