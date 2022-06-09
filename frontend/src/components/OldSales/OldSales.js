@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import Table from 'react-bootstrap/Table'
+import Form from 'react-bootstrap/Form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faRefresh, faSearch, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import {AiFillEdit, AiFillDelete} from 'react-icons/ai'
 import './OldSales.css'
 
@@ -31,54 +32,46 @@ const getProducts = async () =>{
 const [salesList, setSalesList] = useState('')
 const [product, setProduct] = useState('')
 const [searchProduct, setSearchProduct] = useState('')
+const [searchCondition, setSearchCondition] = useState('')
+const [searchGral, setSearchGral] = useState('')
 const [searchMonth, setSearchMonth] = useState('')
+const [search, setSearch] = useState('')
 const URI = `http://localhost:8080/sales/`
 const URI_PROD = 'http://localhost:8080/products/'
 
-// const handleChangeInput = (e) =>{
-//     setSearch(e.target.value)
-//     filtered(e.target.value)
-// }
 
+//búsqueda ventas por mes
 const handleChangeSelect = (e) =>{
     // console.log(e.target.value)
     setSearchMonth(e.target.value)
-    // filtered(e.target.value)
+    
 }
-
-
-const filtered=(term)=>{
-    const result = salesList.filter((elem)=>{
-        if(elem.date.includes(term) || 
-        elem.sale.includes(term) ||
-        elem.condition.includes(term) 
-        )
-        {
-            return elem
-        }
-        
-    })
-    // console.log(result)
-    setSalesList(result)
-}
-
 
 const getSalesByMonth = async () =>{
     const res = await axios.get(`${URI}month/${searchMonth}`)
     setSalesList(res.data)
 }
 
-const getSalesByProduct = (e) =>{
-    // setSearch(e.target.value)
-    filtered(e.target.value)
-    // console.log(e.target.value)
-    
+//búsqueda por producto
+const handleChangeSelectProduct = (e) =>{
+    setSearchProduct(e.target.value)
 }
 
-const getSalesByCondition = (e) =>{
-    // setSearch(e.target.value)
-    filtered(e.target.value)
-    // console.log(e.target.value)
+const getSalesByProduct = async() =>{
+    const res = await axios.get(`${URI}product/${searchProduct}`)
+    setSalesList(res.data)
+                    
+}
+
+
+//búsqueda por condición
+const handleChangeSelectCondition = (e) =>{
+    setSearchCondition(e.target.value)
+}
+
+const getSalesByCondition = async() =>{
+    const res = await axios.get(`${URI}condition/${searchCondition}`)
+    setSalesList(res.data)
 }
 
 const deleteSale = async (_id)=>{
@@ -87,13 +80,18 @@ const deleteSale = async (_id)=>{
     getSales()
 }
 
+const handleSearchGral = (e) =>{
+    setSearchGral(e.target.value)
+}
+
 useEffect(() => {
     getSales()
     getProducts()
 }, [])
 
   return (
-    <><div>
+      <div className='body-oldSales'>
+    <><div >
         {/* <div className='containerInput'>
             <input 
                 className='form-control inputsearch'
@@ -102,6 +100,7 @@ useEffect(() => {
                 onChange={handleChangeInput}
             />
         </div> */}
+         <input type='text' value={searchGral} onChange={handleSearchGral} placeholder='Buscador de productos' className='form-control' />
         <div className='select-month'>
             <select onChange={handleChangeSelect} >
                 <option value=''>Seleccioná Mes</option>
@@ -118,10 +117,10 @@ useEffect(() => {
                 <option value='11'>Noviembre</option>
                 <option value='12'>Diciembre</option>
             </select>
-            <button onClick={getSalesByMonth} className='btn btn-primary btn-fecha'>Buscar por fecha</button>
+            <button onClick={getSalesByMonth} className='btn btn-success btn-fecha'><FontAwesomeIcon icon={faSearch} /></button>
         </div>
         <div className='select-product'>
-            <select onChange={getSalesByProduct} >
+            <select onChange={handleChangeSelectProduct} className="mb-3">
             <option value='2022'>Seleccioná Producto</option>
                 {
                     product && product.map((p)=>(
@@ -129,10 +128,11 @@ useEffect(() => {
                         ))
                     }
             </select>
+            <button onClick={getSalesByProduct} className='btn btn-success btn-fecha'><FontAwesomeIcon icon={faSearch} /></button>
             {/* <button onClick={getSalesByProduct} className='btn btn-primary'> Buscar</button> */}
         </div>
         <div className='select-condition'>
-            <select onChange={getSalesByCondition}>
+            <select onChange={handleChangeSelectCondition}>
             <option value='2022'>Seleccioná Condición</option>
                 
                         <option value='contado'>Contado</option>
@@ -140,11 +140,14 @@ useEffect(() => {
                         <option value='credito'>Crédito</option>
                        
             </select>
-            
+            <button onClick={getSalesByCondition} className='btn btn-success btn-fecha'><FontAwesomeIcon icon={faSearch} /></button>
         </div>
         
     </div><>
-    <button onClick={getSales} className='btn btn-info btn-refresh' >Refresh</button>
+    <button onClick={getSales} className='btn btn-info btn-refresh' ><FontAwesomeIcon icon={faRefresh} /></button>
+    {
+
+    }
     <div className='table-list'>
         <Table striped bordered hover size="sm">
             <thead>
@@ -171,12 +174,16 @@ useEffect(() => {
                                      <button onClick={()=>deleteSale(i._id)} className='btn btn-danger' ><AiFillDelete /></button>
                                  </td>
                              </tr>
-                         )) : null
+                         )) : <p>Realizá una busqueda</p>
                          } 
             </tbody>
         </Table>
+                <div className='totalMonth'>
+                         <h2>{}</h2>
+                </div>
         </div>
     </></>
+    </div>
 
   )
 }

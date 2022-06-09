@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
-// import dotenv from 'dotenv';
-// dotenv.config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 mongoose.connect(
-    // 'mongodb://localhost:27017/pos?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false',
-    'mongodb+srv://admin:admin@cluster0.glhmj.mongodb.net/pos?retryWrites=true&w=majority',
+    process.env.MONGO_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true

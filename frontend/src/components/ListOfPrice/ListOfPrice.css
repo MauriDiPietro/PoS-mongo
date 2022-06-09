@@ -1,7 +1,20 @@
+.bodyfondo{
+    background-color: #fcecf9d0;
+    height: 100vh;
+    width: 100%; 
+}
+
+.inputSearch{
+    margin-bottom: 10px
+}
+
+
+
 .table-list{
     position: relative;
-    width: 80%;
+    width: 90%;
     margin-top: 30px;
+    left: 50px
     /* margin-left: 2px;
     margin-right: 2px */
 }
@@ -19,8 +32,9 @@
 
 .addproduct{
     position: relative;
-    margin-left: -690px;
-    padding: 10px
+    margin-left: -1px;
+    padding: 10px;
+    right: 500px
     
     
 }

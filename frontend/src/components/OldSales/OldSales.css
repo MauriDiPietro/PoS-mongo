@@ -1,3 +1,9 @@
+.body-oldSales{
+    background-color: #fcecf9d0;
+    height: 100vh;
+    width: 100%;
+}
+
 .inputsearch{
     max-width: 30%;
     /* padding: 20px */
@@ -7,24 +13,77 @@
     padding: 20px
 }
 
+.select-product{
+    position: absolute;
+    top: 158px;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+.select-product select{
+    background-color: #000000d0;
+    color: white;
+    padding: 7px;
+    width: 200px;
+    border: none;
+    font-size: 13px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+}
+
 .select-month{
-    position: relative;
-    margin-left: -950px;
-    margin-top: 10px;
-    padding: 10px
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.select-month select{
+    background-color: #000000d0;
+    color: white;
+    padding: 7px;
+    width: 200px;
+    border: none;
+    font-size: 13px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
 }
 
 .btn-fecha{
-    margin-left:5px
+    margin-left: 2px;
+    width:40px;
+    height:35px;
+    margin-top: -2px
 }
 
 .btn-refresh{
     margin-left: -1155px;
-    margin-top: -90px
+    margin-top: 23px
 }
 
 .select-condition{
-    padding: 10px
+    position: absolute;
+    top: 150px;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.select-condition select{
+    background-color: #000000d0;
+    color: white;
+    padding: 7px;
+    width: 200px;
+    border: none;
+    font-size: 13px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
 }
 
 .table-list{

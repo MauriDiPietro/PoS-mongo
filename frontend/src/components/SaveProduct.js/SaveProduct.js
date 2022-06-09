@@ -4,6 +4,7 @@ import axios from 'axios'
 import './SaveProduct.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import swal from 'sweetalert';
 
 export const SaveProduct = () => {
 
@@ -19,18 +20,9 @@ const URI= 'http://localhost:8080/products'
 
 const notify = () => toast("Se guardó el producto!");
 
+
     const save = async (e) => {
         e.preventDefault();
-
-        // let a = `${priceOfBuy}` * `${gain}`
-        // let b = a/100
-        // console.log('aca', b + Number(`${priceOfBuy}`))
-        // setPriceOfSale(b + Number(`${priceOfBuy}`))
-// console.log('price', priceOfSale)
-        // let c = `${priceOfSale}` * `${increment}`
-        // let d = c/100
-        // setPriceOfSale(d + Number(`${priceOfSale}`))
-        
         await axios.post(URI, {name, priceOfBuy, priceOfSale, increment, gain});
         console.log(name, priceOfBuy, priceOfSale, increment, gain)
         notify()
@@ -40,12 +32,29 @@ const notify = () => toast("Se guardó el producto!");
     }
 
     const aplicarGanancia = ()=>{
-        let a = `${priceOfBuy}` * `${gain}`
-        let b = a/100
-        setPriceOfSale(b + Number(`${priceOfBuy}`))
-        console.log('precio + ganancia', priceOfSale)
-        alert(`Ganancia aplicada: ${gain}%`)
+        if(gain !== ''){
+            let a = `${priceOfBuy}` * `${gain}`
+            let b = a/100
+            setPriceOfSale(b + Number(`${priceOfBuy}`))
+            console.log('precio + ganancia', priceOfSale)
+            swal({
+                title: "Aplicaste ganancia!",
+                text: `Ganancia aplicada: ${gain}%, Precio de venta: $${priceOfSale}`,
+                icon: "success",
+                button: "OK",
+              });
+        }else{
+            setPriceOfSale(priceOfBuy)
+            swal({
+                title: "No aplicaste ganancia!",
+                text: `sin ganancia aplicada, Precio de venta: $${priceOfSale}`,
+                icon: "success",
+                button: "OK",
+              });
+        }
     }
+
+    
 
   return (
     
@@ -102,7 +111,7 @@ const notify = () => toast("Se guardó el producto!");
 								pauseOnHover
 								/>
         </form>
-                <button className='btn btn-warning btn-warning' onClick={aplicarGanancia}>Aplicar Ganancia</button>
+                <button className='btn btn-warning btn-warning' onClick={aplicarGanancia}>Calcular precio de venta</button>
 </div>
   )
 }

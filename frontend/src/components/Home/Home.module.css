@@ -1,0 +1,58 @@
+*{
+    padding: 0;
+    
+}
+
+.bodyfondo{
+    background-color: #fcecf9d0;
+    height: 90vh;
+    width: 100%;
+      
+}
+
+.date{
+    position: absolute;
+    margin-left: 50px;
+    top: 110px;
+    margin-bottom: 50px;
+    font-family: 'Indie Flower';
+    
+   
+}
+
+.form1{
+    /* position: relative; */
+    display: inline-block;
+    margin-left: -750px;
+    padding: 20px;
+    margin-top: 100px;
+    width: 30%;
+    height: 40%;
+    /* top: 55px; */
+   
+   
+}
+
+.btnfinalizar{
+    margin-left: 310px;
+    margin-top: 10px;
+   
+}
+
+.tableContainer{
+    position: absolute;
+     margin-top: -80px;
+    width: 50%; 
+    /* margin-right: 10px; */
+    /* right: 11px; */
+    top: 200px;
+    left: 500px;
+}
+
+
+
+@font-face {
+    font-family: 'Indie Flower';
+    src: url('./font/IndieFlower-Regular.ttf');
+}
+

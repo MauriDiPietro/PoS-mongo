@@ -4,6 +4,7 @@ import axios from 'axios'
 import './EditProduct.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import swal from 'sweetalert';
 
 export const EditProduct = () => {
 
@@ -31,13 +32,18 @@ const notify = () => toast("Se aplicó el aumento!");
     const update = async (e) => {
         e.preventDefault();
         
-        await axios.put(URI+id, {name, priceOfBuy, priceOfSale, increment, dateIncr});
-        notify()
+        await axios.put(URI+id, {name, priceOfBuy, priceOfSale, dateIncr});
+        swal({
+            title: "Producto actualizado!",
+            text: `Precio de venta: $${priceOfSale}`,
+            icon: "success",
+            button: "OK",
+          });
         // console.log(name, priceOfBuy, priceOfSale, increment, gain)
         
         setTimeout(() => {
             navigate('/list');
-        }, 3000);
+        }, 1000);
     }
 
     const getProductById = async () => {
@@ -61,11 +67,12 @@ const notify = () => toast("Se aplicó el aumento!");
         setPriceOfSale(d + Number(`${priceOfSale}`))
         console.log('precio + aumento', priceOfSale)
         setDateIncr(`${fechaActual}`)
+        notify()
     }
 
   return (
     
-    <div>
+    <div className='containerForm'>
     {/* <Navbar1 /> */}
         <h3>Editar producto en lista de precios</h3>
         <form onSubmit={update} className='form-save' >
@@ -103,11 +110,21 @@ const notify = () => toast("Se aplicó el aumento!");
                     onChange={e=>setIncrement(e.target.value)}
                 />
                 <br></br>
+                <label className='form-label'>Editar precio de venta: </label>
+                 <input 
+                    type='number'
+                    value={priceOfSale}
+                    onChange={e=>setPriceOfSale(e.target.value)}
+                />
+                <br></br>
                Precio de venta actual: <h2> ${priceOfSale}</h2> 
                <br></br>
              
-                <button className='btn btn-warning ' onClick={aplicarAumento}> Aplicar aumento</button>
-                                <ToastContainer
+                               
+              
+            </div>
+            <button type='submit' className='btn btn-primary btnSave'>Guardar</button>
+            <ToastContainer
 								position="top-center"
 								autoClose={2000}
 								hideProgressBar={false}
@@ -118,10 +135,8 @@ const notify = () => toast("Se aplicó el aumento!");
 								draggable
 								pauseOnHover
 								/>
-              
-            </div>
-            <button type='submit' className='btn btn-primary'>Guardar</button>
         </form>
+                <button className='btn btn-warning btnWarn' onClick={aplicarAumento}> Aplicar aumento</button>
 </div>
   )
 }

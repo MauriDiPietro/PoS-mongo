@@ -1,0 +1,16 @@
+.btnWarn{
+    position:relative;
+    margin-top: -20px
+}
+
+.btnSave{
+    position: relative;
+    margin-top: 10px;
+
+}
+
+.containerForm{
+    background-color: #fcecf9d0;
+    height: 90vh;
+    width: 100%;
+}

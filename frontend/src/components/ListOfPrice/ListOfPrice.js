@@ -8,6 +8,7 @@ import './ListOfPrice.css'
 export const ListOfPrice = () => {
 
 const [list, setList] = useState([])
+const [search, setSearch] = useState('')
 
 const URI = 'http://localhost:8080/products/'
 
@@ -21,17 +22,40 @@ const deleteProduct = async(id)=>{
     getProducts()
 }
 
+const searchProduct = (e) => {
+    setSearch(e.target.value)
+}
+
+//filtrado de búsqueda
+let results = []
+if(!search){
+    results = list
+}else{
+    results = list.filter((prod)=>{
+        if(prod.name.toLowerCase().includes(search.toLocaleLowerCase())){
+
+            return prod
+        }
+        
+    })
+}
+// console.log(search)
+
+
+
 useEffect(() => {
     getProducts()
 }, [])
 
   return (
+      <div className='bodyfondo'>
       <div className='table-list' >
           <div className='addproduct'>
                 <Link to='/saveproduct'>
-                    <button className='btn btn-primary '>Agregar producto</button>
+                    <button className='btn btn-primary btnAddProduct'>Agregar producto</button>
                 </Link>
           </div>
+          <input type='text' value={search} onChange={searchProduct} placeholder='Buscador de productos' className='form-control inputSearch' />
           <Table striped bordered hover size="sm" className='table-bootstrap' >
               <thead>
                   <tr>
@@ -48,7 +72,7 @@ useEffect(() => {
               </thead>
               			<tbody>
                            {
-                            list ? list.map((i)=>(
+                            results.map((i)=>(
                                 <tr key={i._id}>
                                     <td>{i.name}</td>
                                     <td>${i.priceOfBuy}</td>
@@ -63,10 +87,11 @@ useEffect(() => {
                                        <button onClick={()=>deleteProduct(i._id)} className='btn btn-danger' ><AiFillDelete /></button>
                                     </td>
                                 </tr>
-                           )) : null
+                           )) 
                            }
                         </tbody>
           </Table>
+    </div>
     </div>
   )
 }
