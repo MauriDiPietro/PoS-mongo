@@ -6,7 +6,7 @@ export const ShowSales = ({date}) => {
 
 const [salesList, setSalesList] = useState('')
 
-const URI = `http://localhost:8080/sales/date/${date}`
+const URI = `https://pointofsaleapp2022.herokuapp.com/sales/date/${date}`
 
 const getSales = async () =>{
     const res = await axios.get(URI)

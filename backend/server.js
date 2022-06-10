@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'));
-const whiteList = ['http://localhost:3000', 'ws://localhost:3000']
+const whiteList = ['http://localhost:3000', 'ws://localhost:3000', 'https://larueca.netlify.app/']
 app.use(cors({origin: whiteList}));
 
 

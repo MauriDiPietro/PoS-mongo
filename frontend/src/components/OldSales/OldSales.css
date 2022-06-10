@@ -1,6 +1,6 @@
 .body-oldSales{
     background-color: #fcecf9d0;
-    height: 100vh;
+    height: 1000vh;
     width: 100%;
 }
 
@@ -92,6 +92,11 @@
     margin-top: 30px;
     /* margin-left: 2px;
     margin-right: 2px */
+}
+
+.totalMonth{
+    margin-left: -870px;
+    
 }
 
 

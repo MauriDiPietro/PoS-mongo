@@ -25,7 +25,7 @@ const {id} = useParams();
 
 const navigate = useNavigate();
 
-const URI= 'http://localhost:8080/products/'
+const URI= 'https://pointofsaleapp2022.herokuapp.com/products/'
 
 const notify = () => toast("Se aplicó el aumento!");
 

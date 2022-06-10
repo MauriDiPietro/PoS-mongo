@@ -36,9 +36,22 @@ const [searchCondition, setSearchCondition] = useState('')
 const [searchGral, setSearchGral] = useState('')
 const [searchMonth, setSearchMonth] = useState('')
 const [search, setSearch] = useState('')
-const URI = `http://localhost:8080/sales/`
-const URI_PROD = 'http://localhost:8080/products/'
+const [totalSales, setTotalSales] = useState('')
+const [totalEgr, setTotalEgr] = useState('')
 
+const URI = `https://pointofsaleapp2022.herokuapp.com/sales/`
+const URI_PROD = 'https://pointofsaleapp2022.herokuapp.com/products/'
+
+
+const getTotalSalesByMonth = async () =>{
+    const res = await axios.get(`${URI}totalingmonth/${searchMonth}`)
+    setTotalSales(res.data)
+}
+
+const getTotalEgrByMonth = async () =>{
+    const res = await axios.get(`${URI}totalegrmonth/${searchMonth}`)
+    setTotalEgr(res.data)
+}
 
 //búsqueda ventas por mes
 const handleChangeSelect = (e) =>{
@@ -50,6 +63,8 @@ const handleChangeSelect = (e) =>{
 const getSalesByMonth = async () =>{
     const res = await axios.get(`${URI}month/${searchMonth}`)
     setSalesList(res.data)
+    getTotalSalesByMonth()
+    getTotalEgrByMonth()
 }
 
 //búsqueda por producto
@@ -83,6 +98,8 @@ const deleteSale = async (_id)=>{
 const handleSearchGral = (e) =>{
     setSearchGral(e.target.value)
 }
+
+
 
 useEffect(() => {
     getSales()
@@ -179,7 +196,8 @@ useEffect(() => {
             </tbody>
         </Table>
                 <div className='totalMonth'>
-                         <h2>{}</h2>
+                         <h5>📈 Total ingresos: ${totalSales}</h5>
+                         <h5>📉 Total egresos: ${totalEgr}</h5>
                 </div>
         </div>
     </></>

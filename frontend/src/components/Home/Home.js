@@ -30,15 +30,15 @@ const Home = () => {
 	const [total, setTotal] = useState(0)
 
 
-	const URI = `http://localhost:8080/sales/date/${date}`
-	const URI_POST = 'http://localhost:8080/sales/'
+	const URI = `https://pointofsaleapp2022.herokuapp.com/sales/date/${date}`
+	const URI_POST = 'https://pointofsaleapp2022.herokuapp.com/sales/'
 
 	const newSale={
 		sale, ing, egr, condition, date, month, year
 	}
 
-	const notifyVenta = () => toast("Se guardó la venta!");
-	const notifyPago = () => toast("Se guardó el pago!");
+	const notifyVenta = () => toast("Se guardó la venta! ✅");
+	const notifyPago = () => toast("Se guardó el pago! ✅");
 	
 	const getSales = async () =>{
 		const res = await axios.get(URI)

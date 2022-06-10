@@ -10,7 +10,7 @@ export const ListOfPrice = () => {
 const [list, setList] = useState([])
 const [search, setSearch] = useState('')
 
-const URI = 'http://localhost:8080/products/'
+const URI = 'https://pointofsaleapp2022.herokuapp.com/products/'
 
 const getProducts = async() => {
     const products = await axios.get(URI)
