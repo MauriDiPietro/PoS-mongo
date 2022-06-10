@@ -7,28 +7,13 @@ import './db/db.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
-// const PORT = process.env.PORT || 8080
-
 const app = express();
-
-
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'));
 const whiteList = ['http://localhost:3000', 'ws://localhost:3000']
 app.use(cors({origin: whiteList}));
-
-
-// const corsOptions = {
-//     origin: function(origin, callback){
-//         if(whiteList.indexOf(origin)===-1){
-//             callback(null, true)
-//         }else{
-//             callback(new Error('Noot allowed by CORS'))
-//         }
-//     }
-// }
 
 
 app.use('/sales', routesSales)

@@ -205,7 +205,7 @@ export const getTotalIngByMonth = async(req, res)=>{
         const sales = await SaleModel.aggregate([
             {
             $match: {
-                month: `${month}`         //matchea con fecha pasada por params
+                month: Number(`${month}`)         //matchea con fecha pasada por params
             }
         },
         {
@@ -213,8 +213,9 @@ export const getTotalIngByMonth = async(req, res)=>{
                     _id: '$month', totaling: {$sum: '$ing'}  //suma los campos ing
                 }
             }
-        ])        
-        res.json(sales)
+        ])
+        const ing = sales.map(x => x.totaling)        
+        res.json(ing)
     } catch (error) {
         res.send({message: error.message});
     }
@@ -226,7 +227,7 @@ export const getTotalEgrByMonth = async(req, res)=>{
         const sales = await SaleModel.aggregate([
             {
             $match: {
-                month: `${month}`         //matchea con fecha pasada por params
+                month: Number(`${month}`)         //matchea con fecha pasada por params
             }
         },
         {
@@ -235,7 +236,8 @@ export const getTotalEgrByMonth = async(req, res)=>{
                 }
             }
         ])        
-        res.json(sales)
+        const egr = sales.map(x => x.totaling)
+        res.json(egr)
     } catch (error) {
         res.send({message: error.message});
     }

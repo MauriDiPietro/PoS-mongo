@@ -5,8 +5,8 @@ import {saveSale, getAllSales, getSalesByDate, getSalesByMonth, getSalesByYear, 
 router.post('/', saveSale);
 router.get('/', getAllSales);
 router.get('/totaling/:date', getTotalIng)     //total ingresos por fecha
-router.get('/totaling/:month', getTotalIngByMonth) //total ingresos por mes
-router.get('/totaling/:month', getTotalEgrByMonth)
+router.get('/totalingmonth/:month', getTotalIngByMonth) //total ingresos por mes
+router.get('/totalegrmonth/:month', getTotalEgrByMonth)
 router.get('/totalegr/:date', getTotalEgr)     //total egresos por fecha
 router.get('/total/:date', getTotal)     //total ventas por fecha
 router.get('/date/:date', getSalesByDate);  //por fecha completa dd-mm-aaaa
