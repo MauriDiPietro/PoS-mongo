@@ -116,7 +116,7 @@ const refreshForm = () =>{
 					
 
 	<div className={styles.tableContainer}>
-          <Table striped bordered hover size="sm" className={styles.table}>
+          <Table striped bordered hover variant="dark" className={styles.table}>
               <thead>
                   <tr>
                       {/* <th>#</th> */}
@@ -143,7 +143,7 @@ const refreshForm = () =>{
                            }
                         </tbody>
 						<br></br>
-		  		<strong>TOTAL: ${total}</strong>
+		  		<strong className={styles.total} >TOTAL 💰 ${total}</strong>
           	</Table>
 		  </div>
     	</></>

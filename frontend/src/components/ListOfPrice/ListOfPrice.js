@@ -56,7 +56,7 @@ useEffect(() => {
                 </Link>
           </div>
           <input type='text' value={search} onChange={searchProduct} placeholder='Buscador de productos' className='form-control inputSearch' />
-          <Table striped bordered hover size="sm" className='table-bootstrap' >
+          <Table striped bordered hover variant="dark" className='table-bootstrap' >
               <thead>
                   <tr>
                       {/* <th>#</th> */}

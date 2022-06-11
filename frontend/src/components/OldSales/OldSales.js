@@ -166,7 +166,7 @@ useEffect(() => {
 
     }
     <div className='table-list'>
-        <Table striped bordered hover size="sm">
+        <Table striped bordered hover variant="dark">
             <thead>
                 <tr>
                     <th>Fecha</th>
