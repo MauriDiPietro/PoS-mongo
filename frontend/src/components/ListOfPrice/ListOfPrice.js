@@ -26,6 +26,10 @@ const searchProduct = (e) => {
     setSearch(e.target.value)
 }
 
+const handleCheck = (e) =>{
+    console.log('checkbox', e.target.value)
+}
+
 //filtrado de búsqueda
 let results = []
 if(!search){
@@ -68,6 +72,10 @@ useEffect(() => {
                       <th>Precio de venta</th>
                       <th>Editar</th>
                       <th>Eliminar</th>
+                      <th> 
+                            %<input type='text' className='inputAum' placeholder='%' /> 
+                            <button className='btn btn-warning btnAumento' >Aumentar</button> 
+                      </th>
                   </tr>
               </thead>
               			<tbody>
@@ -86,6 +94,7 @@ useEffect(() => {
                                     <td>
                                        <button onClick={()=>deleteProduct(i._id)} className='btn btn-danger' ><AiFillDelete /></button>
                                     </td>
+                                    <td> <input type='checkbox' onChange={handleCheck} ></input> </td>
                                 </tr>
                            )) 
                            }

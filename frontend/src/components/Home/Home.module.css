@@ -4,7 +4,7 @@
 }
 
 .bodyfondo{
-    background-color: #fcecf9d0;
+    background-color: #ffebfbf8;
     height: 90vh;
     width: 100%;
       
@@ -12,7 +12,7 @@
 
 .date{
     position: absolute;
-    margin-left: 50px;
+    margin-left: 90px;
     top: 110px;
     margin-bottom: 50px;
     font-family: 'Indie Flower';
@@ -29,7 +29,8 @@
     width: 30%;
     height: 40%;
     /* top: 55px; */
-    background-color:rgba(0, 0, 0, 0.26);
+    background-color:rgba(0, 0, 0, 0.123);
+    border-radius: 20px;
 }
 
 /*etiqueta[atributo="valor"]*/
@@ -44,25 +45,39 @@
     color: white;
 }
 
+.form1 input[name='sale']::placeholder{
+    color: white
+}
+
 .form1 input[name='ing']{
     background-color:rgba(0, 0, 0, 0.582);
     color: white;
 }
+
+.form1 input[name='ing']::placeholder{
+    color: white
+}
+
 .form1 input[name='egr']{
     background-color:rgba(0, 0, 0, 0.582);
     color: white;
 }
+
+.form1 input[name='egr']::placeholder{
+    color: white
+}
+
 .form1 input[name='date']{
     background-color:rgba(0, 0, 0, 0.582);
-    color: white;
+    color: rgb(134, 133, 133);
 }
 .form1 input[name='month']{
     background-color:rgba(0, 0, 0, 0.582);
-    color: white;
+    color: rgb(134, 133, 133);
 }
 .form1 input[name='year']{
     background-color:rgba(0, 0, 0, 0.582);
-    color: white;
+    color: rgb(134, 133, 133);
 }
 
 
@@ -75,6 +90,8 @@
     color: white;
 }
 
+
+
 .btnfinalizar{
     margin-left: 310px;
     margin-top: 10px;
@@ -82,6 +99,7 @@
 }
 
 .tableContainer{
+    
     position: absolute;
      margin-top: -80px;
     width: 50%; 
@@ -95,6 +113,10 @@
     background-color: black;
     font-size: 20px;
    
+}
+
+.table{
+    border-radius: 20px;
 }
 
 @font-face {

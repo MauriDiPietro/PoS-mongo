@@ -74,8 +74,8 @@ const handleChangeSelectProduct = (e) =>{
 
 const getSalesByProduct = async() =>{
     const res = await axios.get(`${URI}product/${searchProduct}`)
-    setSalesList(res.data)
-                    
+    setSalesList(res.data)  
+    totalIngforSales()               
 }
 
 
@@ -87,6 +87,7 @@ const handleChangeSelectCondition = (e) =>{
 const getSalesByCondition = async() =>{
     const res = await axios.get(`${URI}condition/${searchCondition}`)
     setSalesList(res.data)
+    totalIngforSales()
 }
 
 const deleteSale = async (_id)=>{
@@ -99,7 +100,12 @@ const handleSearchGral = (e) =>{
     setSearchGral(e.target.value)
 }
 
-
+const totalIngforSales = ()=>{
+    const ingresos = salesList.map(i=>i.ing)
+    const suma = ingresos.reduce((a, b)=>a+b)
+    console.log('suma de ingresos', suma)
+    setTotalSales(suma)
+}
 
 useEffect(() => {
     getSales()
@@ -195,10 +201,34 @@ useEffect(() => {
                          } 
             </tbody>
         </Table>
-                <div className='totalMonth'>
-                         <h5>📈 Total ingresos: ${totalSales}</h5>
-                         <h5>📉 Total egresos: ${totalEgr}</h5>
+        {
+
+                <div>
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                            <tr>
+                                <th>
+                                    📈 Total ingresos
+                                </th>
+                                <th>
+                                    📈 Total egresos
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    ${totalSales}
+                                </td>
+                                <td>
+                                    ${totalEgr}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                         
                 </div>
+        }
         </div>
     </></>
     </div>

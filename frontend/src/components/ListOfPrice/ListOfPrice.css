@@ -38,3 +38,16 @@
     
     
 }
+
+.btnAumento{
+    position: relative;
+    top:5px
+    /* margin-top: 50px */
+}
+
+.inputAum{
+    position: relative;
+    width: 80px;
+    top: 0px
+    /* margin-top: 30px; */
+}

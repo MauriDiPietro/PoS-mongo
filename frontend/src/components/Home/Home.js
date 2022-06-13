@@ -77,7 +77,7 @@ const refreshForm = () =>{
 
   return (
     		<div className={styles.bodyfondo}>
-				<h1 className={styles.date}>Hoy es 👉 {date} 📅</h1>
+				<h1 className={styles.date}>Hoy es 👉 {date}</h1>
                     <div className='mb-3'>
 						<form onSubmit={saveSale} className={styles.form1}>
 							<input type="text" className='form-control' onChange={e=>setSale(e.target.value.toLocaleLowerCase())}  name='sale' value={sale} placeholder="Detalle"/>
