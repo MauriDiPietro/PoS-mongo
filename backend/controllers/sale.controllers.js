@@ -109,11 +109,13 @@ export const getSalesByProduct = async(req, res) => {
 
 export const getTotalSalesByProduct = async(req, res) => {
     const {product} = req.params 
+    const {date} = req.params 
     try {
         const sales = await SaleModel.aggregate([
             {
             $match: {
-                sale: `${product}`         //matchea con fecha pasada por params
+                sale: `${product}`,         //matchea con prod pasado por params
+                date: `${date}`
             }
         },
         {

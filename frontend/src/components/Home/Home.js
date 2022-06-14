@@ -54,9 +54,9 @@ const Home = () => {
 		setTotalIng(totaling.data)
 		const totalegr = await axios.get(URI_POST+'totalegr/'+`${date}`)
 		setTotalEgr(totalegr.data)
-		const totalingLana = await axios.get(URI_POST+'product/total/lana')
+		const totalingLana = await axios.get(URI_POST+'product/total/Lana/'+`${date}`)
 		setTotalIngLana(totalingLana.data)
-		const totalingVarios = await axios.get(URI_POST+'product/total/varios')
+		const totalingVarios = await axios.get(URI_POST+'product/total/varios/'+`${date}`)
 		setTotalIngVarios(totalingVarios.data)
 	}
 
