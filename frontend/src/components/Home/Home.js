@@ -172,7 +172,7 @@ const refreshForm = () =>{
                                     📈 Total ingresos
                                 </th>
                                 <th>
-                                    📈 Total egresos
+									📉 Total egresos
                                 </th>
                             </tr>
                         </thead>
@@ -194,10 +194,10 @@ const refreshForm = () =>{
                         <thead>
                             <tr>
                                 <th>
-                                    📈 Ventas de Lana
+								🧶 Ventas de Lana
                                 </th>
                                 <th>
-                                    📈 Ventas varias
+								🧵 Ventas varias
                                 </th>
                             </tr>
                         </thead>
