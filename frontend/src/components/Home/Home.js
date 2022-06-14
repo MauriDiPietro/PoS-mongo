@@ -97,7 +97,7 @@ const refreshForm = () =>{
 				<button onClick={setSaleLana} className={`btn btn-primary ${styles.btnLana}`} > Lana </button>
                     <div className='mb-3'>
 						<form onSubmit={saveSale} className={styles.form1}>
-							<input type="text" className='form-control' onChange={e=>setSale(e.target.value.toLocaleLowerCase())}  name='sale' value={sale} placeholder="Detalle"/>
+							<input type="text" className={`form-control ${styles.inputSale}`} onChange={e=>setSale(e.target.value.toLocaleLowerCase())}  name='sale' value={sale} placeholder="Detalle"/>
 							<input type="number" className='form-control' onChange={e=>setIng(e.target.value)} name='ing' value={ing} placeholder="Ingreso"/>
 							<input type="number" className='form-control' onChange={e=>setEgr(e.target.value)} name='egr' value={egr} placeholder="Egreso"/>
 							

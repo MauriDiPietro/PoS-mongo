@@ -11,28 +11,29 @@
 }
 
 .date{
-    position: absolute;
-    margin-left: 60px;
-    top: 110px;
+    font-family: Indie Flower;
     margin-bottom: 50px;
-    font-family: 'Indie Flower';
+    margin-left: 83px;
+    position: absolute;
+    top: 105px;
     
    
 }
 
 .form1{
-    /* position: relative; */
-    display: inline-block;
-    margin-left: -750px;
-    padding: 20px;
-    margin-top: 100px;
-    width: 30%;
-    height: 40%;
-    /* top: 55px; */
-    background-color:rgba(0, 0, 0, 0.123);
+    background-color: rgba(0,0,0,.123);
     border-radius: 20px;
+    display: inline-block;
+    height: 40%;
+    margin-left: -658px;
+    margin-top: 100px;
+    padding: 20px;
+    width: 30%;
 }
 
+.inputSale{
+    width: 250px
+}
 /*etiqueta[atributo="valor"]*/
 
 .form1 input{
@@ -93,7 +94,7 @@
 
 
 .btnfinalizar{
-    margin-left: 310px;
+    margin-left: 269px;
     margin-top: 10px;
    
 }
@@ -146,7 +147,7 @@
 
 .btnLana{
     position: relative;
-    top: 90px;
-    right: 390px
+    right: 203px;
+    top: 157px;
 }
 
