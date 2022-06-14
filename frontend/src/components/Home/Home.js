@@ -30,6 +30,8 @@ const Home = () => {
 	const [total, setTotal] = useState(0)
 	const [totalIng, setTotalIng] = useState(0)
 	const [totalEgr, setTotalEgr] = useState(0)
+	const [totalIngLana, setTotalIngLana] = useState(0)
+	const [totalIngVarios, setTotalIngVarios] = useState(0)
 
 
 	const URI = `https://pointofsaleapp2022.herokuapp.com/sales/date/${date}`
@@ -49,9 +51,13 @@ const Home = () => {
 		const total = await axios.get(URI_POST+'total/'+`${date}`)
 		setTotal(total.data)
 		const totaling = await axios.get(URI_POST+'totaling/'+`${date}`)
-		setTotal(totaling.data)
+		setTotalIng(totaling.data)
 		const totalegr = await axios.get(URI_POST+'totalegr/'+`${date}`)
-		setTotal(totalegr.data)
+		setTotalEgr(totalegr.data)
+		const totalingLana = await axios.get(URI_POST+'product/total/lana')
+		setTotalIngLana(totalingLana.data)
+		const totalingVarios = await axios.get(URI_POST+'product/total/varios')
+		setTotalIngVarios(totalingVarios.data)
 	}
 
 	
@@ -158,8 +164,8 @@ const refreshForm = () =>{
 		  		<strong className={styles.total} >TOTAL 💰 ${total}</strong>
           	</Table>
 		  </div>
-		  <div>
-                    <Table striped bordered hover variant="dark">
+		  <div className={styles.tableTotalesContainer}>
+                    <Table striped bordered hover variant="dark" className={styles.tableTotales}>
                         <thead>
                             <tr>
                                 <th>
@@ -177,6 +183,31 @@ const refreshForm = () =>{
                                 </td>
                                 <td>
                                     ${totalEgr}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                         
+                </div>
+				<div className={styles.tableTotalesContainerIndiv}>
+                    <Table striped bordered hover variant="dark" className={styles.tableTotales}>
+                        <thead>
+                            <tr>
+                                <th>
+                                    📈 Ventas de Lana
+                                </th>
+                                <th>
+                                    📈 Ventas varias
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    ${totalIngLana}
+                                </td>
+                                <td>
+                                    ${totalIngVarios}
                                 </td>
                             </tr>
                         </tbody>

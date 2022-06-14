@@ -144,12 +144,14 @@ useEffect(() => {
         </div>
         <div className='select-product'>
             <select onChange={handleChangeSelectProduct} className="mb-3">
-            <option value='2022'>Seleccioná Producto</option>
-                {
+            <option value=''>Seleccioná Producto</option>
+            <option value='Lana'>Lana</option>
+           
+                {/* {
                     product && product.map((p)=>(
                         <option value={p.name}>{p.name}</option>
                         ))
-                    }
+                    } */}
             </select>
             <button onClick={getSalesByProduct} className='btn btn-success btn-fecha'><FontAwesomeIcon icon={faSearch} /></button>
             {/* <button onClick={getSalesByProduct} className='btn btn-primary'> Buscar</button> */}
