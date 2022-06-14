@@ -124,3 +124,9 @@
     src: url('./font/IndieFlower-Regular.ttf');
 }
 
+.btnLana{
+    position: relative;
+    top: 90px;
+    right: 390px
+}
+

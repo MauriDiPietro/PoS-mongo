@@ -32,7 +32,7 @@ const notify = () => toast("Se aplicó el aumento!");
     const update = async (e) => {
         e.preventDefault();
         
-        await axios.put(URI+id, {name, priceOfBuy, priceOfSale, dateIncr});
+        await axios.put(URI+id, {name, priceOfBuy, priceOfSale, increment, dateIncr});
         swal({
             title: "Producto actualizado!",
             text: `Precio de venta: $${priceOfSale}`,

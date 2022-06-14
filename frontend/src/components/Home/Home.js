@@ -18,7 +18,7 @@ const Home = () => {
 
 	 
 	const [date, setDate] = useState(fechaActual)
-	const [sale, setSale] = useState('')
+	const [sale, setSale] = useState('varios')
 	const [ing, setIng] = useState('')
 	const [egr, setEgr] = useState('')
 	const [condition, setCondition] = useState('contado')
@@ -64,6 +64,10 @@ const Home = () => {
         // navigate('/');
     }
 	
+const setSaleLana = () =>{
+	setSale('Lana')
+}
+
 const refreshForm = () =>{
 	setSale('')
 	setIng('')
@@ -78,6 +82,7 @@ const refreshForm = () =>{
   return (
     		<div className={styles.bodyfondo}>
 				<h1 className={styles.date}>Hoy es 👉 {date}</h1>
+				<button onClick={setSaleLana} className={`btn btn-primary ${styles.btnLana}`} > Lana </button>
                     <div className='mb-3'>
 						<form onSubmit={saveSale} className={styles.form1}>
 							<input type="text" className='form-control' onChange={e=>setSale(e.target.value.toLocaleLowerCase())}  name='sale' value={sale} placeholder="Detalle"/>
