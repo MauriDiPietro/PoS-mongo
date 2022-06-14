@@ -12,8 +12,8 @@ export const EditProduct = () => {
     const [priceOfBuy, setPriceOfBuy] = useState('')
     const [priceOfSale, setPriceOfSale] = useState('')
     const [increment, setIncrement] = useState('')
-    // const [gain, setGain] = useState('')
     const [dateIncr, setDateIncr] = useState('')
+    // const [gain, setGain] = useState('')
 
     const fechaCompleta = new Date()
     const mes = fechaCompleta.getMonth()+1
@@ -124,7 +124,7 @@ const notify = () => toast("Se aplicó el aumento!");
               
             </div>
             <button type='submit' className='btn btn-primary btnSave'>Guardar</button>
-            <ToastContainer
+                                <ToastContainer
 								position="top-center"
 								autoClose={2000}
 								hideProgressBar={false}
@@ -134,6 +134,7 @@ const notify = () => toast("Se aplicó el aumento!");
 								pauseOnFocusLoss
 								draggable
 								pauseOnHover
+                                
 								/>
         </form>
                 <button className='btn btn-warning btnWarn' onClick={aplicarAumento}> Aplicar aumento</button>

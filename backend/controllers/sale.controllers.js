@@ -146,7 +146,8 @@ export const getTotalIng = async(req, res)=>{
                 }
             }
         ])        
-        res.json(sales)
+        const ing = sales.map(x => x.totaling)
+        res.json(ing)
     } catch (error) {
         res.send({message: error.message});
     }
@@ -167,7 +168,8 @@ export const getTotalEgr = async(req, res)=>{
                 }
             }
         ])        
-        res.json(sales)
+        const egr = sales.map(x => x.totalegr)
+        res.json(egr)
     } catch (error) {
         res.send({message: error.message});
     }

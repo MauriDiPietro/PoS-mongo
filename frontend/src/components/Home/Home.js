@@ -28,6 +28,8 @@ const Home = () => {
 	const [suma, setSuma] = useState('')
 	const [resta, setResta] = useState('')
 	const [total, setTotal] = useState(0)
+	const [totalIng, setTotalIng] = useState(0)
+	const [totalEgr, setTotalEgr] = useState(0)
 
 
 	const URI = `https://pointofsaleapp2022.herokuapp.com/sales/date/${date}`
@@ -46,6 +48,10 @@ const Home = () => {
 		console.log(res.data)
 		const total = await axios.get(URI_POST+'total/'+`${date}`)
 		setTotal(total.data)
+		const totaling = await axios.get(URI_POST+'totaling/'+`${date}`)
+		setTotal(totaling.data)
+		const totalegr = await axios.get(URI_POST+'totalegr/'+`${date}`)
+		setTotal(totalegr.data)
 	}
 
 	
@@ -69,10 +75,10 @@ const setSaleLana = () =>{
 }
 
 const refreshForm = () =>{
-	setSale('')
+	setSale('varios')
 	setIng('')
 	setEgr('')
-	setCondition('')
+	setCondition('contado')
 }
 
 	useEffect(() => {
@@ -94,6 +100,7 @@ const refreshForm = () =>{
 								<option value='contado'>Contado</option>
 								<option value='credito'>Crédito</option>
 								<option value='debito'>Debito</option>
+								<option value='debito'>Transferencia</option>
 							</select>
 							
 							<input type="text" disabled className='form-control' onChange={e=>setDate(e.target.value)} name='date' value={date}  placeholder="Fecha"/>
@@ -151,6 +158,31 @@ const refreshForm = () =>{
 		  		<strong className={styles.total} >TOTAL 💰 ${total}</strong>
           	</Table>
 		  </div>
+		  <div>
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                            <tr>
+                                <th>
+                                    📈 Total ingresos
+                                </th>
+                                <th>
+                                    📈 Total egresos
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    ${totalIng}
+                                </td>
+                                <td>
+                                    ${totalEgr}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                         
+                </div>
     	</></>
     </div>
   )

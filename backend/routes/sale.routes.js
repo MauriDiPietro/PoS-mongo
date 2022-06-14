@@ -16,6 +16,6 @@ router.get('/product/:product', getSalesByProduct)
 router.get('/condition/:condition', getSalesByCondition)
 router.get('/byid/:id', getSaleById)
 router.put('/:id', updateSale)
-router.delete('/:id', deleteSale)
+router.delete('/:id', deleteSale) 
 
 export default router;

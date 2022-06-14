@@ -4,11 +4,25 @@ import axios from 'axios'
 import Table from 'react-bootstrap/Table'
 import {AiFillEdit, AiFillDelete} from 'react-icons/ai'
 import './ListOfPrice.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ListOfPrice = () => {
 
 const [list, setList] = useState([])
 const [search, setSearch] = useState('')
+
+
+const [priceOfSale, setPriceOfSale] = useState('')
+const [increment, setIncrement] = useState('')
+const [dateIncr, setDateIncr] = useState('')
+const [_id, setId] = useState('')
+
+const fechaCompleta = new Date()
+const mes = fechaCompleta.getMonth()+1
+const año = fechaCompleta.getFullYear()
+const dia = fechaCompleta.getDate()
+const fechaActual = (`${dia}-${mes}-${año}`)
 
 const URI = 'https://pointofsaleapp2022.herokuapp.com/products/'
 
@@ -27,7 +41,37 @@ const searchProduct = (e) => {
 }
 
 const handleCheck = (e) =>{
-    console.log('checkbox', e.target.value)
+    console.log('checkbox', e.target.id)
+    setId(e.target.id)
+}
+
+const notify = () => toast("Se aplicó el aumento!");
+
+const aplicarAumento = ()=>{
+    
+    // console.log('increment', increment)
+    const buscado = list.find(i => i._id === _id)
+    // console.log('buscado', buscado)
+    let c = `${buscado.priceOfSale}` * `${increment}`
+    // console.log('priceOfSale', priceOfSale)
+    let d = c/100
+    setPriceOfSale(d + Number(`${buscado.priceOfSale}`))
+    setDateIncr(`${fechaActual}`)
+    console.log('precio + aumento', priceOfSale)
+    notify()
+}
+
+const newIncrement = async (e) => {
+    e.preventDefault();
+    await axios.put(`${URI}${_id}`, {
+        name: list.name, 
+        priceOfBuy: list.priceOfBuy, 
+        increment, 
+        dateIncr,
+        priceOfSale 
+    })
+    // alert('ok')
+    getProducts()
 }
 
 //filtrado de búsqueda
@@ -73,8 +117,21 @@ useEffect(() => {
                       <th>Editar</th>
                       <th>Eliminar</th>
                       <th> 
-                            %<input type='text' className='inputAum' placeholder='%' /> 
-                            <button className='btn btn-warning btnAumento' >Aumentar</button> 
+                            %<input type='text' onChange={e=>setIncrement(e.target.value)} name='inc' value={increment} className='inputAum' placeholder='%' /> 
+                            <button onClick={aplicarAumento} className='btn btn-info btnAp' >APLICAR</button>
+                            <button onClick={newIncrement} className='btn btn-warning btnAumento' >Aumentar</button> 
+                            <ToastContainer
+								position="top-center"
+								autoClose={2000}
+								hideProgressBar={false}
+								newestOnTop={false}
+								closeOnClick
+								rtl={false}
+								pauseOnFocusLoss
+								draggable
+								pauseOnHover
+                                
+								/>
                       </th>
                   </tr>
               </thead>
@@ -94,7 +151,7 @@ useEffect(() => {
                                     <td>
                                        <button onClick={()=>deleteProduct(i._id)} className='btn btn-danger' ><AiFillDelete /></button>
                                     </td>
-                                    <td> <input type='checkbox' onChange={handleCheck} ></input> </td>
+                                    <td> <input type='checkbox' name={i.name} id={i._id} onChange={handleCheck} ></input> </td>
                                 </tr>
                            )) 
                            }
