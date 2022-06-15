@@ -139,7 +139,7 @@ export const getTotalSalesByProductByMonth = async(req, res) => {
             {
             $match: {
                 sale: `${product}`,         //matchea con prod pasado por params
-                month: `${month}`
+                month: Number(`${month}`)
             }
         },
         {

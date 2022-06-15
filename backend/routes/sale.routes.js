@@ -14,7 +14,7 @@ router.get('/month/:month', getSalesByMonth);   //por mes
 router.get('/year/:year', getSalesByYear);  //por año
 router.get('/product/:product', getSalesByProduct)
 router.get('/product/total/:product/:date', getTotalSalesByProduct) 
-router.get('/product/totalmonth/:product/:month', getTotalSalesByProductByMonth)
+router.get('/totalsalesbypym/:product/:month', getTotalSalesByProductByMonth)
 router.get('/condition/:condition', getSalesByCondition)
 router.get('/byid/:id', getSaleById)
 router.put('/:id', updateSale)
