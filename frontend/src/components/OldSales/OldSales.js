@@ -15,6 +15,7 @@ const mes = fechaCompleta.getMonth()+1
 const año = fechaCompleta.getFullYear()
 const dia = fechaCompleta.getDate()
 const fechaActual = (`${dia}-${mes}-${año}`)
+const diaAnterior = (`${dia - 1}-${mes}-${año}`)
 
 
 const getSales = async () =>{
@@ -33,7 +34,7 @@ const [salesList, setSalesList] = useState('')
 const [product, setProduct] = useState('')
 const [searchProduct, setSearchProduct] = useState('')
 const [searchCondition, setSearchCondition] = useState('')
-const [searchGral, setSearchGral] = useState('')
+const [searchDate, setSearchDate] = useState(diaAnterior)
 const [searchMonth, setSearchMonth] = useState('')
 const [search, setSearch] = useState('')
 const [totalSales, setTotalSales] = useState('')
@@ -42,9 +43,18 @@ const [totalEgr, setTotalEgr] = useState('')
 const URI = `https://pointofsaleapp2022.herokuapp.com/sales/`
 const URI_PROD = 'https://pointofsaleapp2022.herokuapp.com/products/'
 
+const getTotalSalesProductByDay = async () =>{
+    const res = await axios.get(`${URI}/product/total/${searchProduct}/${searchDate}`)
+    setTotalSales(res.data)
+}
 
 const getTotalSalesByMonth = async () =>{
     const res = await axios.get(`${URI}totalingmonth/${searchMonth}`)
+    setTotalSales(res.data)
+}
+
+const getTotalSalesByProductByMonth = async () =>{
+    const res = await axios.get(`${URI}product/total/${searchProduct}/${searchMonth}`)
     setTotalSales(res.data)
 }
 
@@ -96,8 +106,8 @@ const deleteSale = async (_id)=>{
     getSales()
 }
 
-const handleSearchGral = (e) =>{
-    setSearchGral(e.target.value)
+const handleSearchDate = (e) =>{
+    setSearchDate(e.target.value)
 }
 
 const totalIngforSales = ()=>{
@@ -123,7 +133,11 @@ useEffect(() => {
                 onChange={handleChangeInput}
             />
         </div> */}
-         <input type='text' value={searchGral} onChange={handleSearchGral} placeholder='Buscador de productos' className='form-control' />
+        <div className='divInputDate' >
+            <input type='text' value={searchDate} onChange={handleSearchDate} placeholder='Buscador de productos' className='form-control inputDate' />
+        </div>
+        <button onClick={getTotalSalesProductByDay} className='btn btn-primary btnSearchDate' ><FontAwesomeIcon icon={faSearch} /></button>
+        <button onClick={getTotalSalesByProductByMonth} className='btn btn-primary btnSearchSalesByProdByMonth'>{`Ventas de ${searchProduct} en ${searchMonth}`}</button>
         <div className='select-month'>
             <select onChange={handleChangeSelect} >
                 <option value=''>Seleccioná Mes</option>
@@ -170,9 +184,35 @@ useEffect(() => {
         
     </div><>
     <button onClick={getSales} className='btn btn-info btn-refresh' ><FontAwesomeIcon icon={faRefresh} /></button>
-    {
+   
+      {
 
-    }
+<div className='tableIngEgr' >
+    <Table striped bordered hover variant="dark">
+        <thead>
+            <tr>
+                <th>
+                    📈 Total ingresos
+                </th>
+                <th>
+                    📈 Total egresos
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    ${totalSales}
+                </td>
+                <td>
+                    ${totalEgr}
+                </td>
+            </tr>
+        </tbody>
+    </Table>
+         
+</div>
+}
     <div className='table-list'>
         <Table striped bordered hover variant="dark">
             <thead>
@@ -203,34 +243,7 @@ useEffect(() => {
                          } 
             </tbody>
         </Table>
-        {
-
-                <div>
-                    <Table striped bordered hover variant="dark">
-                        <thead>
-                            <tr>
-                                <th>
-                                    📈 Total ingresos
-                                </th>
-                                <th>
-                                    📈 Total egresos
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    ${totalSales}
-                                </td>
-                                <td>
-                                    ${totalEgr}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                         
-                </div>
-        }
+      
         </div>
     </></>
     </div>

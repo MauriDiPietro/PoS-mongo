@@ -99,5 +99,32 @@
     
 }
 
+.tableIngEgr{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.inputDate{
+    width: 20px;
+    margin-top: 20px;
+    /* height: 20px */
+}
+
+.divInputDate{
+    width: 200px;
+    margin-left: 520px;
+}
+
+.btnSearchDate{
+    position: absolute;
+    margin-left: 80px;
+    top: 85px
+}
+
+.btnSearchSalesByProdByMonth{
+    position: absolute;
+    margin-left: 390px;
+    top: 130px
+}
 
 

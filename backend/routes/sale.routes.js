@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import {saveSale, getAllSales, getSalesByDate, getSalesByMonth, getSalesByYear, getSaleById, updateSale, deleteSale, getTotalIng, getTotal, getTotalEgr, getSalesByProduct, getSalesByCondition, getTotalEgrByMonth, getTotalIngByMonth, getTotalSalesByProduct} from '../controllers/sale.controllers.js';
+import {saveSale, getAllSales, getSalesByDate, getSalesByMonth, getSalesByYear, getSaleById, updateSale, deleteSale, getTotalIng, getTotal, getTotalEgr, getSalesByProduct, getSalesByCondition, getTotalEgrByMonth, getTotalIngByMonth, getTotalSalesByProduct, getTotalSalesByProductByMonth} from '../controllers/sale.controllers.js';
 
 router.post('/', saveSale);
 router.get('/', getAllSales);
@@ -13,7 +13,8 @@ router.get('/date/:date', getSalesByDate);  //por fecha completa dd-mm-aaaa
 router.get('/month/:month', getSalesByMonth);   //por mes
 router.get('/year/:year', getSalesByYear);  //por año
 router.get('/product/:product', getSalesByProduct)
-router.get('/product/total/:product/:date', getTotalSalesByProduct)
+router.get('/product/total/:product/:date', getTotalSalesByProduct) 
+router.get('/product/total/:product/:month', getTotalSalesByProductByMonth)
 router.get('/condition/:condition', getSalesByCondition)
 router.get('/byid/:id', getSaleById)
 router.put('/:id', updateSale)
