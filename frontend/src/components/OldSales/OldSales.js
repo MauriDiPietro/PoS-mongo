@@ -54,7 +54,7 @@ const getTotalSalesByMonth = async () =>{
 }
 
 const getTotalSalesByProductByMonth = async () =>{
-    const res = await axios.get(`${URI}product/total/${searchProduct}/${searchMonth}`)
+    const res = await axios.get(`${URI}product/totalmonth/${searchProduct}/${searchMonth}`)
     setTotalSales(res.data)
 }
 
