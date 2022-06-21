@@ -89,7 +89,7 @@ const refreshForm = () =>{
 
 	useEffect(() => {
 		getSales()
-	}, [])
+	}, [date])
 
   return (
     		<div className={styles.bodyfondo}>

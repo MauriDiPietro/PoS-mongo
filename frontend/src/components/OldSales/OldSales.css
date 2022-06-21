@@ -87,11 +87,12 @@
 }
 
 .table-list{
-    position: relative;
-    width: 80%;
-    margin-top: 30px;
-    /* margin-left: 2px;
-    margin-right: 2px */
+    /* position: absolute; */
+    /* width: 50%; */
+    /* margin-top: 30px; */
+    margin: 0 auto;
+     /* margin-left: 2px; */
+    margin-right: 80px 
 }
 
 .totalMonth{
@@ -100,6 +101,11 @@
 }
 
 .tableIngEgr{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.tableVentas{
     width: 50%;
     margin: 0 auto;
 }

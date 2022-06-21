@@ -37,25 +37,45 @@ const [searchCondition, setSearchCondition] = useState('')
 const [searchDate, setSearchDate] = useState(diaAnterior)
 const [searchMonth, setSearchMonth] = useState('')
 const [search, setSearch] = useState('')
-const [totalSales, setTotalSales] = useState('')
-const [totalEgr, setTotalEgr] = useState('')
+const [totalDay, setTotalDay] = useState(0)
+const [totalEgr, setTotalEgr] = useState(0)
+const [totalIng, setTotalIng] = useState(0)
+const [totalIngLana, setTotalIngLana] = useState(0)
+const [totalIngVarios, setTotalIngVarios] = useState(0)
+	
 
 const URI = `https://pointofsaleapp2022.herokuapp.com/sales/`
 const URI_PROD = 'https://pointofsaleapp2022.herokuapp.com/products/'
 
 const getTotalSalesProductByDay = async () =>{
-    const res = await axios.get(`${URI}/product/total/${searchProduct}/${searchDate}`)
-    setTotalSales(res.data)
+    const salesDate = await axios.get(`${URI}date/${searchDate}`)
+    setSalesList(salesDate.data)
+    const total = await axios.get(URI+'total/'+`${searchDate}`)
+	setTotalDay(total.data)
+    const totaling = await axios.get(URI+'totaling/'+`${searchDate}`)
+	setTotalIng(totaling.data)
+	const totalegr = await axios.get(URI+'totalegr/'+`${searchDate}`)
+	setTotalEgr(totalegr.data)
+    const totalingLana = await axios.get(URI+'product/total/Lana/'+`${searchDate}`)
+	setTotalIngLana(totalingLana.data)
+	const totalingVarios = await axios.get(URI+'product/total/varios/'+`${searchDate}`)
+	setTotalIngVarios(totalingVarios.data)
+    // refreshTotals()
+    // const res = await axios.get(`${URI}product/total/${searchProduct}/${searchDate}`)
+    // setTotalSales(res.data)
 }
 
 const getTotalSalesByMonth = async () =>{
     const res = await axios.get(`${URI}totalingmonth/${searchMonth}`)
-    setTotalSales(res.data)
+    setTotalDay(res.data)
 }
 
 const getTotalSalesByProductByMonth = async () =>{
     const res = await axios.get(`${URI}totalsalesbypym/${searchProduct}/${searchMonth}`)
-    setTotalSales(res.data)
+    setTotalDay(res.data)
+    const sales = await axios.get(`${URI}/product/${searchProduct}`)
+    setSalesList(sales.data)
+    
 }
 
 const getTotalEgrByMonth = async () =>{
@@ -111,14 +131,26 @@ const handleSearchDate = (e) =>{
 }
 
 const totalIngforSales = ()=>{
-    const ingresos = salesList.map(i=>i.ing)
+    const ingresos = salesList ? salesList.map(i=>i.ing) : 0
     const suma = ingresos.reduce((a, b)=>a+b)
     console.log('suma de ingresos', suma)
-    setTotalSales(suma)
+    setTotalDay(suma)
+}
+
+const totalEgrforSales = ()=>{
+    const egresos = salesList ? salesList.map(i=>i.egr) : 0
+    const suma = egresos.reduce((a, b)=>a+b)
+    console.log('suma de egresos', suma)
+    setTotalEgr(suma)
+}
+
+const refreshTotals = ()=>{
+    setTotalDay(0)
+    setTotalEgr(0)
 }
 
 useEffect(() => {
-    getSales()
+    // getSales()
     getProducts()
 }, [])
 
@@ -197,22 +229,53 @@ useEffect(() => {
                 <th>
                     📈 Total egresos
                 </th>
+                <th>
+                💰 Total (i-e)
+                </th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>
-                    ${totalSales}
+                    ${totalIng}
                 </td>
                 <td>
                     ${totalEgr}
+                </td>
+                <td>
+                    ${totalDay}
                 </td>
             </tr>
         </tbody>
     </Table>
          
 </div>
+
 }
+    <div className='tableVentas'>
+        <Table striped bordered hover variant="dark" >
+                        <thead>
+                            <tr>
+                                <th>
+								🧶 Ventas de Lana
+                                </th>
+                                <th>
+								🧵 Ventas varias
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    ${totalIngLana}
+                                </td>
+                                <td>
+                                    ${totalIngVarios}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+    </div>
     <div className='table-list'>
         <Table striped bordered hover variant="dark">
             <thead>
@@ -231,8 +294,8 @@ useEffect(() => {
                                  <tr key={i._id}>
                                 <td>{i.date}</td>
                                  <td>{i.sale}</td>
-                                 <td>{i.ing}</td>
-                                 <td>{i.egr}</td>
+                                 <td>${i.ing}</td>
+                                 <td>${i.egr}</td>
                                  <td>{i.condition}</td>
                                  <td>
                                      <Link to={`/edit/${i._id}`} className='btn btn-info'><AiFillEdit /></Link>
