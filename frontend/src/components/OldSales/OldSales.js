@@ -51,15 +51,15 @@ const URI_PROD = 'https://pointofsaleapp2022.herokuapp.com/products/'
 const getTotalSalesProductByDay = async () =>{
     const salesDate = await axios.get(`${URI}date/${searchDate}`)
     setSalesList(salesDate.data)
-    const total = await axios.get(URI+'total/'+`${searchDate}`)
+    const total = await axios.get(URI+`total/${searchDate}`)
 	setTotalDay(total.data)
-    const totaling = await axios.get(URI+'totaling/'+`${searchDate}`)
+    const totaling = await axios.get(URI+`totaling/${searchDate}`)
 	setTotalIng(totaling.data)
-	const totalegr = await axios.get(URI+'totalegr/'+`${searchDate}`)
+	const totalegr = await axios.get(URI+`totalegr/${searchDate}`)
 	setTotalEgr(totalegr.data)
-    const totalingLana = await axios.get(URI+'product/total/Lana/'+`${searchDate}`)
+    const totalingLana = await axios.get(URI+`product/total/Lana/${searchDate}`)
 	setTotalIngLana(totalingLana.data)
-	const totalingVarios = await axios.get(URI+'product/total/varios/'+`${searchDate}`)
+	const totalingVarios = await axios.get(URI+`product/total/varios/${searchDate}`)
 	setTotalIngVarios(totalingVarios.data)
     // refreshTotals()
     // const res = await axios.get(`${URI}product/total/${searchProduct}/${searchDate}`)
@@ -157,6 +157,7 @@ const refreshTotals = ()=>{
 useEffect(() => {
     // getSales()
     getProducts()
+    
 }, [])
 
   return (

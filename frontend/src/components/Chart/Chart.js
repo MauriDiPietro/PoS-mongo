@@ -75,9 +75,11 @@ export const GraphicChart = ({año}) => {
     const [OCT, setOCT] = useState(0);
     const [NOV, setNOV] = useState(0);
     const [DIC, setDIC] = useState(0);
-    
-    // console.log('junio', JUN)
+    const [okGraph, setOkGraph] = useState(false)
+   
 const  getTotalIngMonth = async() =>{
+    const res = await axios.get(`${BASE_URL}/totalingyear/2022`)
+    // console.log(res.data)
         const total1 = await axios.get(`${BASE_URL}/totalingmonth/1`)
         total1.data[0] === undefined ? setENE(0) : setENE(total1.data[0])
         const total2 = await axios.get(`${BASE_URL}/totalingmonth/2`)
@@ -102,6 +104,9 @@ const  getTotalIngMonth = async() =>{
         total11.data[0] === undefined ? setNOV(0) : setNOV(total11.data[0])
         const total12 = await axios.get(`${BASE_URL}/totalingmonth/12`)
         total12.data[0] === undefined ? setDIC(0) : setDIC(total12.data[0])
+        console.log('se cargó el grafico')
+        setOkGraph(true)
+       
     }
 
 useEffect(() => {
@@ -109,8 +114,9 @@ useEffect(() => {
 }, [])
 
 const scores = [ENE, FEB, MAR, ABR, MAY, JUN, JUL, AGO, SEP, OCT, NOV, DIC]
-console.log(scores)
+ console.log(scores)
 const labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+// const labels = [scoresMonths]
 
 const options = {
     fill: true,
@@ -122,8 +128,10 @@ const options = {
     }
 }
 
-const data = useMemo(()=>{
-    return {
+const data = 
+// useMemo(()=>{
+    // return 
+    {
         datasets: [
             {
                 label: `${año}`,
@@ -137,12 +145,21 @@ const data = useMemo(()=>{
         ],
         labels 
     }
-}, []);
+// }, []);
+
+const renderGraph = () => {
+    return (
+        <Line data={data} options={options}  width={600} height={400}/>
+    )
+}
 
   return (
     <div className="graphic">
         {/* <button onClick={getTotalIngMonth} >cargar datos</button> */}
-        <Line data={data} options={options}  width={600} height={400}/>
+        {
+            okGraph === true ? renderGraph() : <span>Loading...</span>
+           
+        }
     </div>
   )
 }
