@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRefresh, faSearch, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import {AiFillEdit, AiFillDelete} from 'react-icons/ai'
 import './OldSales.css'
+import { GraphicChart } from '../Chart/Chart.js'
 
 const OldSales = () => {
 
@@ -75,6 +76,10 @@ const getTotalSalesByProductByMonth = async () =>{
     setTotalDay(res.data)
     const sales = await axios.get(`${URI}/product/${searchProduct}`)
     setSalesList(sales.data)
+    setTotalIng(res.data)
+    setTotalEgr(0)
+    setTotalIngVarios(0)
+    setTotalIngLana(res.data)
     
 }
 
@@ -117,7 +122,7 @@ const handleChangeSelectCondition = (e) =>{
 const getSalesByCondition = async() =>{
     const res = await axios.get(`${URI}condition/${searchCondition}`)
     setSalesList(res.data)
-    totalIngforSales()
+    totalIngforSales() 
 }
 
 const deleteSale = async (_id)=>{
@@ -252,6 +257,7 @@ useEffect(() => {
 </div>
 
 }
+
     <div className='tableVentas'>
         <Table striped bordered hover variant="dark" >
                         <thead>
@@ -276,6 +282,9 @@ useEffect(() => {
                         </tbody>
                     </Table>
     </div>
+
+    <GraphicChart año={año}/>
+
     <div className='table-list'>
         <Table striped bordered hover variant="dark">
             <thead>

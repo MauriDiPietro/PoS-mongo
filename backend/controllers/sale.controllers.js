@@ -131,6 +131,30 @@ export const getTotalSalesByProduct = async(req, res) => {
     }
 }
 
+export const getTotalSalesByYear = async(req, res) => {
+    
+    const {year} = req.params 
+    try {
+        const sales = await SaleModel.aggregate([
+            {
+            $match: {
+                        
+                year: Number(`${year}`)
+            }
+        },
+        {
+            $group: {
+                    _id: '$month', totaling: {$sum: '$ing'}  //suma los campos ing
+                }
+            }
+        ])        
+        const ing = sales.map(x => x.totaling)
+        res.json(sales)
+    } catch (error) {
+        res.send({message: error.message});
+    }
+}
+
 export const getTotalSalesByProductByMonth = async(req, res) => {
     const {product} = req.params 
     const {month} = req.params 
@@ -154,6 +178,7 @@ export const getTotalSalesByProductByMonth = async(req, res) => {
         res.send({message: error.message});
     }
 }
+
 
 export const getSalesByCondition = async(req, res) => {
     const {condition} = req.params 
